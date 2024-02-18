@@ -1,0 +1,45 @@
+version: "3.3"
+services:
+  php:
+    build: .
+    ports:
+        - "80:80"
+        - "443:443"
+    volumes : 
+        - ./www/:/var/www/html
+    links:
+        - db
+  db:
+    image: mysql:5.7
+    hostname: mysql
+    volumes:
+      - /var/lib/mysql
+      - ./dump:/docker-entrypoint-initdb.d
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: spot
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+    networks:
+      - db-test
+  app:
+    image: phpmyadmin/phpmyadmin:latest
+    links: 
+      - db
+    restart: always
+    ports: 
+      - 88:80
+    environment: 
+      - PMA_ARBITRARY=1
+    volumes:
+        - /sessions
+        - ~/docker/phpmyadmin/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
+        - /custom/phpmyadmin/theme/:/www/themes/theme/
+networks:
+  db-test:
+    driver: bridge
+    ipam:
+      driver: default
