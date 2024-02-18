@@ -1,4 +1,3 @@
-use `spot`;
 
 CREATE TABLE `Categoria` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
