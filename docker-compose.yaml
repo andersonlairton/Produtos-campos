@@ -25,6 +25,10 @@ services:
       - ./www:/var/www/html
     depends_on:
       - db
+    command: >
+      /bin/bash -c "apt-get update && apt-get install -y \
+      && docker-php-ext-install mysqli \
+      && apache2-foreground"
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin

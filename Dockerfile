@@ -2,7 +2,8 @@
 FROM php:7.4-apache
 
 # Instale as extensões do PHP necessárias para interagir com o MySQL
-RUN docker-php-ext-install mysqli pdo pdo_mysql
+RUN echo 'instalando mysqli'
+RUN docker-php-ext-install mysqli
 
 # Instale o Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
