@@ -16,8 +16,8 @@
                     Produtos
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Cadastrar</a>
-                    <a class="dropdown-item" href="#">Ver Todos</a>
+                <a class="dropdown-item" href="../../Views/Produtos/form.php">Cadastrar</a>
+                    <a class="dropdown-item" href="../../Views/Produtos/list.php">Ver Todos</a>
                 </div>
             </li>
             <li class="nav-item dropdown">

@@ -17,7 +17,7 @@ function deleteCategoria(id) {
     var confirmado = confirm('Deseja deletar categoria?');
     if (confirmado) {
         $.ajax({
-            type: "POST",
+            type: "PUT",
             url: "../../Source/configajax.php",
             data: {
                 action: 'inativar',
@@ -37,7 +37,7 @@ function deleteCategoria(id) {
 
 function listagem() {
     $.ajax({
-        type: "POST",
+        type: "GET",
         url: "../../Source/configajax.php",
         data: {
             action: 'listagem',
