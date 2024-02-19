@@ -10,7 +10,7 @@ ENGINE=InnoDB;
 
 CREATE TABLE `Produtos` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
-	`descricao` INT(11) NOT NULL DEFAULT '0',
+	`descricao` VARCHAR(50) NOT NULL DEFAULT '0' COLLATE 'latin1_swedish_ci',
 	`categoria_id` INT(11) NOT NULL DEFAULT '0',
 	PRIMARY KEY (`id`) USING BTREE,
 	INDEX `FK__Categoria` (`categoria_id`) USING BTREE,
