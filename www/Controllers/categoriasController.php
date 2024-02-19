@@ -33,6 +33,39 @@ class categoriasController
         return $this->retorno;
     }
 
+    public function listagem($dados = []) {
+        try {
+            $categoria = new CategoriaModel();
+            $this->retorno = $categoria->listagemCategorias($dados['inativas']);
+        } catch (Exception $e) {
+            $this->retorno = [
+                'resposta_status'=>0,
+                'msg'=>$e->getMessage()
+            ];
+        }
+
+        return $this->retorno;
+    }
+
+    public function inativar($dados = null) {
+        try {
+            if (empty($dados['categoria'])) {
+                throw new Exception("Nenhum id enviado na requisição", 1);
+            }
+
+            $categoria = new CategoriaModel;
+            $this->retorno = $categoria->atualizar($dados['categoria'],['status'=>0]);
+            
+        } catch (Exception $e) {
+            $this->retorno = [
+                'resposta_status'=>0,
+                'msg'=>$e->getMessage()
+            ];
+        }
+
+        return $this->retorno;
+    }
+
     private function validarDadosRequest($dados = []) {
         if (empty($dados['descricao'])) {
             throw new Exception("Descricao não pode ser vazia", 1);

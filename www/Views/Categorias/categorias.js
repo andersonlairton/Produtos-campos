@@ -1,12 +1,5 @@
 $(document).ready(function () {
     $("#salvarCategoria").click(function (e) {
-        console.log("clicou")
-        console.log($("#descricao").val());
-
-        if ($("#statusCategoria").is(":checked")) {
-
-        }
-        console.log($("#statusCategoria").is(":checked"));
 
         $.ajax({
             type: "POST",

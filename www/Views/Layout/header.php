@@ -25,8 +25,8 @@
                     Categorias
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="Views/Categorias/form.php">Cadastrar</a>
-                    <a class="dropdown-item" href="Views/Categorias/list.php">Ver Todos</a>
+                    <a class="dropdown-item" href="../../Views/Categorias/form.php">Cadastrar</a>
+                    <a class="dropdown-item" href="../../Views/Categorias/list.php">Ver Todos</a>
                 </div>
             </li>
         </ul>
