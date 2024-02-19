@@ -1,12 +1,12 @@
 version: "3.8"
 services:
   db:
-    image: mysql:5.7
+    image: mysql:latest
     container_name: mysql_db
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: mydatabase
+      MYSQL_DATABASE: spot
       MYSQL_USER: myuser
       MYSQL_PASSWORD: mypassword
     ports:
