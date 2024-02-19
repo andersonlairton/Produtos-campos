@@ -7,9 +7,9 @@ $(document).ready(function () {
         window.location.assign("../Categorias/form.php");
     });
 
-    $("#statusCategoria").change(function (e) { 
+    $("#statusCategoria").change(function (e) {
         listagem();
-        
+
     });
 });
 
@@ -57,7 +57,10 @@ function listagem() {
                         <th scope="row">${i}</th>
                         <td>${v.descricao}</td>
                         <td>${v.status}</td>
-                        <td><button type="button" onClick="deleteCategoria(${v.id})" id="btnDelete" class="btn btn-danger">Excluir</button></td>
+                        <td>
+                            <button type="button" onClick="deleteCategoria(${v.id})" id="btnDelete" class="btn btn-danger">Excluir</button>
+                            <button type="button" class="btn btn-info" onClick="editarCategoria(${v.id})">Editar</button>    
+                        </td>
                     </tr>`
                 });
 
@@ -69,4 +72,8 @@ function listagem() {
             console.log('error 109')
         }
     });
+}
+
+function editarCategoria(id) {
+    window.location.assign(`../Categorias/form.php?cat=${id}`);
 }

@@ -36,7 +36,7 @@ class categoriasController
     public function listagem($dados = []) {
         try {
             $categoria = new CategoriaModel();
-            $this->retorno = $categoria->listagemCategorias($dados['inativas']);
+            $this->retorno = $categoria->listagemCategorias($dados['inativas'],$dados['id']);
         } catch (Exception $e) {
             $this->retorno = [
                 'resposta_status'=>0,
@@ -56,6 +56,34 @@ class categoriasController
             $categoria = new CategoriaModel;
             $this->retorno = $categoria->atualizar($dados['categoria'],['status'=>0]);
             
+        } catch (Exception $e) {
+            $this->retorno = [
+                'resposta_status'=>0,
+                'msg'=>$e->getMessage()
+            ];
+        }
+
+        return $this->retorno;
+    }
+
+    public function atualizar($dados = []) {
+        try {
+            $this->validarDadosRequest($dados);
+
+            $categoria = new CategoriaModel();
+            $alteracoes = [];
+
+            if (!empty($dados['descricao'])) {
+                $alteracoes['descricao'] = $dados['descricao'];
+            }
+
+            if (!empty($dados['status'])) {
+                $alteracoes['status'] = $dados['status'];
+            }
+            if($categoria->atualizar($dados['id'],$alteracoes)== true){
+                $this->retorno['resposta_status']['msg']= "dados alterados com sucesso";
+            }
+
         } catch (Exception $e) {
             $this->retorno = [
                 'resposta_status'=>0,

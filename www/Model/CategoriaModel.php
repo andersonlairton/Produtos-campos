@@ -27,7 +27,17 @@ class CategoriaModel extends Config
         $strupt = "";
         foreach ($alteracoes as $campo => $valor) {
 
-            $strupt .= "{$campo} = {$valor},";
+            if ($campo == 'status') {
+                if ($valor = 'true') {
+                    $valor = 1;
+                }else {
+                    $valor = 0;
+                }
+
+                $strupt .= "{$campo} = {$valor},";
+            }else{
+                $strupt .= "{$campo} = '{$valor}',";
+            }
         }
 
         $strupt = rtrim($strupt, ",");
@@ -58,12 +68,16 @@ class CategoriaModel extends Config
         }
     }
 
-    public function listagemCategorias($inativas = false)
+    public function listagemCategorias($inativas = false,$id = null)
     {
         $where = "";
 
         if ($inativas == 'false') {
             $where = "WHERE Categoria.`status` = 1";
+        }
+
+        if (!empty($id)) {
+            $where = "WHERE Categoria.`id` = {$id}";
         }
 
         $conexao = $this->getConnection();
